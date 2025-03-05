@@ -70,7 +70,7 @@ display: flex;
 <div id="#demo">
 {% for i in results %}
 <div class="card shadow-sm bg-dark-col mb-3 " style="max-width: 100%;">
-    <div class="card-header text-white "><img width="22px;" class="left-mar" src="http://{{ i['href'].partition('//')[-1].partition('/')[0] }}/favicon.ico">{{i['title']}}</div>
+    <div class="card-header text-white "><img width="22px;" class="left-mar" src="https://www.google.com/s2/favicons?domain={{ i['href'].partition('//')[-1].partition('/')[0] }}">{{i['title']}}</div>
   <div class="card-body bg-dark-col text-secondary">
     <a href="{{i['href']}}" class="card-title">{{i['href']}}</a>
     <p class="card-text">{{i['body']}}</p>
