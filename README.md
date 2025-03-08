@@ -1,5 +1,8 @@
 # libresail
-a basic meta search engine based off duckduckgo results
+building the next gen ai powered search engine
+
+
+
 ![image](https://github.com/user-attachments/assets/daba048b-d7d4-4e0e-ae46-96dc11a26424)
 
 
