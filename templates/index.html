@@ -104,6 +104,7 @@
       margin: 0 5px;
       font-weight: bold;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
     
     .shortcut-badge:hover {
@@ -162,16 +163,16 @@
           
           <form action="{{ url_for('home') }}" method="post" class="position-relative">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" name="search_term" class="form-control search-input" placeholder="Search the web...">
+            <input type="text" id="searchInput" name="search_term" class="form-control search-input" placeholder="Search the web...">
           </form>
           
           <div class="shortcuts">
             <p>Try using prefixes for special searches:</p>
             <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
-              <span class="shortcut-badge">ai|your question</span>
-              <span class="shortcut-badge">news|topic</span>
-              <span class="shortcut-badge">image|search</span>
-              <span class="shortcut-badge">video|search</span>
+              <span class="shortcut-badge" data-prefix="ai|">ai|your question</span>
+              <span class="shortcut-badge" data-prefix="news|">news|topic</span>
+              <span class="shortcut-badge" data-prefix="image|">image|search</span>
+              <span class="shortcut-badge" data-prefix="video|">video|search</span>
             </div>
           </div>
         </div>
@@ -209,11 +210,29 @@
       particlesContainer.appendChild(particle);
     }
     
+    // Add click event listeners to shortcut badges
+    const shortcutBadges = document.querySelectorAll('.shortcut-badge');
+    const searchInput = document.getElementById('searchInput');
+    
+    shortcutBadges.forEach(badge => {
+      badge.addEventListener('click', function() {
+        const prefix = this.getAttribute('data-prefix');
+        searchInput.value = prefix;
+        searchInput.focus();
+        
+        // Position cursor at the end of the prefix
+        const length = prefix.length;
+        if (searchInput.setSelectionRange) {
+          searchInput.setSelectionRange(length, length);
+        }
+      });
+    });
+    
     // Add keydown event listener to focus search input when / is pressed
     document.addEventListener('keydown', function(e) {
       if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
         e.preventDefault();
-        document.querySelector('.search-input').focus();
+        searchInput.focus();
       }
     });
   </script>
