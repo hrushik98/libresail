@@ -1,4 +1,5 @@
 from duckduckgo_search import DDGS
+import yfinance  as yf
 from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
@@ -27,6 +28,17 @@ def search(search_term):
     results = DDGS().text(search_term, region='wt-wt', max_results=25)
     sr = search_term
     return render_template("results.html", results=results, sr=sr)
+    
+@app.route('/stock/<stock>')
+def stock(stock):
+    df = yf.Ticker(str(stock))
+    pricecheck = df.info['regularMarketPrice']
+    return render_template("stock.html", pricecheck=pricecheck)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.errorhandler(404)
+def page_not_found(e):
+    return "fudge", 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template("index.html"), 500
