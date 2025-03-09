@@ -1,7 +1,7 @@
 # libresail
 building the next gen ai powered meta search engine
 
-##how to use
+## how to use
 clone this repo
 
 install requirements with: `pip install -r requirements.txt`
