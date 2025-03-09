@@ -1,2 +1,3 @@
 duckduckgo-search
+yfinance 
 Flask
