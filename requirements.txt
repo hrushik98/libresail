@@ -1,3 +1,3 @@
 duckduckgo-search
-yfinance 
+yfinance==0.2.54
 Flask
