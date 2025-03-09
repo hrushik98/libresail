@@ -3,9 +3,11 @@ building the next gen ai powered meta search engine
 
 clone this repo
 
-install requirements with:
+install requirements with: `pip install -r requirements.txt`
 
-Inline `pip install -r requirements.txt`
+run main with: `flask --app main run`
+
+
 
 
 ![image](https://github.com/user-attachments/assets/daba048b-d7d4-4e0e-ae46-96dc11a26424)
