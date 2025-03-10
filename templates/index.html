@@ -17,6 +17,39 @@
       --text-color: #ffffff;
       --secondary-text: #b3b3b3;
     }
+        :root,
+    [data-selected-theme="green"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #00CC66;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="blue"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #00D4E7;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="pink"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #F06EFC;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="orange"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #F3601C;
+      --text-color: #ffffff;
+       --secondary-text: #b3b3b3;
+    }
+
     
     body {
       background-color: var(--bg-color) !important;
@@ -53,7 +86,7 @@
     
     .search-input:hover {
       transform: scale(1.01);
-      box-shadow: 0 0 20px rgba(255, 41, 117, 0.3);
+      box-shadow: 0 0 20px var(--accent-color);
     }
     
     .search-icon {
@@ -66,12 +99,12 @@
     }
     
     .logo-glow {
-      filter: drop-shadow(0 0 15px rgba(255, 41, 117, 0.7));
+      filter: drop-shadow(0 0 15px var(--accent-color));
       transition: all 0.3s ease;
     }
     
     .logo-glow:hover {
-      filter: drop-shadow(0 0 25px rgba(255, 41, 117, 0.9));
+      filter: drop-shadow(0 0 25px var(--accent-color));
       transform: scale(1.05);
     }
     
@@ -84,7 +117,7 @@
     }
     
     .sail-text {
-      background: linear-gradient(to right, #3ad6fd, #c071fe);
+      background: #ffffff;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -97,7 +130,7 @@
     }
     
     .shortcut-badge {
-      background-color: rgba(255, 41, 117, 0.2);
+      background-color: var(--accent-color);
       color: var(--accent-color);
       border-radius: 20px;
       padding: 4px 12px;
@@ -127,8 +160,8 @@
       position: absolute;
       background: linear-gradient(90deg, var(--accent-color), #9333ea);
       border-radius: 50%;
-      animation: float 15s infinite linear;
-      opacity: 0.4;
+      animation: float 20s infinite linear;
+      opacity: 0.3;
     }
   </style>
 </head>
@@ -183,7 +216,7 @@
   <script>
     // Create floating particles
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 15;
+    const particleCount = 55;
     
     for (let i = 0; i < particleCount; i++) {
       createParticle();
@@ -194,7 +227,7 @@
       particle.classList.add('particle');
       
       // Random size between 5px and 20px
-      const size = Math.random() * 15 + 5;
+      const size = Math.random() * 200 + 5;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       
@@ -235,8 +268,20 @@
         searchInput.focus();
       }
     });
+    const handleThemeSelection = (event) => {
+    const target = event.target;
+    const theme = target.getAttribute('data-theme');
+    const isPressed = target.getAttribute('aria-pressed');
+    document.documentElement.setAttribute("data-selected-theme", theme);
+    }
+
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    const buttons = themeSwitcher.querySelectorAll('button');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', handleThemeSelection);
+    });
   </script>
-  
   <style>
     @keyframes float {
       0% {
