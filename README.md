@@ -8,7 +8,7 @@ clone this repo
 
 install requirements with: `pip install -r requirements.txt`
 
-run main with: `flask --app main run`
+run dev server with: `flask --app main run`
 
 ![Screenshot from 2025-03-10 13-23-42](https://github.com/user-attachments/assets/a4763ef3-4e3a-484a-83a5-4cdd205dcc84)
 
