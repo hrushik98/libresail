@@ -10,8 +10,6 @@ install requirements with: `pip install -r requirements.txt`
 
 run main with: `flask --app main run`
 
-![image](https://github.com/user-attachments/assets/46668191/420929861-83d9040a-2fdf-43cf-815d-1289f3b7859e)
+![Screenshot from 2025-03-10 13-23-42](https://github.com/user-attachments/assets/a4763ef3-4e3a-484a-83a5-4cdd205dcc84)
 
-![image](https://github.com/user-attachments/assets/daba048b-d7d4-4e0e-ae46-96dc11a26424)
-![Model]([relative/path/in/repository/to/image.svg]()
-
+![Screenshot from 2025-03-10 13-24-17](https://github.com/user-attachments/assets/e982a30d-709f-431a-accf-5434eb716bc5)
