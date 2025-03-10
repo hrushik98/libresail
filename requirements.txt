@@ -1,3 +1,4 @@
 duckduckgo-search
+podsearch
 yfinance==0.2.54
 Flask
