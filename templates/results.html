@@ -17,6 +17,38 @@
       --text-color: #ffffff;
       --secondary-text: #b3b3b3;
     }
+    :root,
+    [data-selected-theme="green"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #00CC66;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="blue"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #00D4E7;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="pink"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #F06EFC;
+      --text-color: #ffffff;
+      --secondary-text: #b3b3b3;
+    }
+
+    [data-selected-theme="orange"] {
+      --bg-color: #171717;
+      --card-color: #222222;
+      --accent-color: #F3601C;
+      --text-color: #ffffff;
+       --secondary-text: #b3b3b3;
+    }
     
     body {
       padding: 0;
@@ -77,14 +109,15 @@
     }
     
     .card-header {
-      background-color: rgba(255, 41, 117, 0.1) !important;
+      background-color: var(--accent-color) !important;
       color: var(--text-color) !important;
       font-weight: bold;
       padding: 15px 20px;
-      border-bottom: 1px solid rgba(255, 41, 117, 0.2);
+      border-bottom: 1px solid black;
       display: flex;
       align-items: center;
       gap: 10px;
+
     }
     
     .card-body {
@@ -199,7 +232,6 @@
       <form class="d-flex align-items-center w-100" action="{{ url_for('home') }}" method="post">
         <a href="/" class="navbar-brand me-3">
           <h2 class="text-light logo-text mb-0 d-flex align-items-center">
-            <svg fill="var(--accent-color)" height="32px" width="32px" class="me-2" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-255.93 -255.93 1013.68 1013.68" xml:space="preserve">
               <g>
                 <g>
                   <path d="M447.017,329.476c-9.6-7.467-22.4-5.333-29.867,3.2l-9.6,10.667c-14.933,18.133-35.2,19.2-71.467,18.133 c-6.4,0-12.8,0-19.2,0h-131.2c-6.4,0-12.8,0-19.2,0c-35.2,1.067-56.533,0-71.467-18.133l-9.6-10.667 c-7.467-9.6-21.333-10.667-29.867-3.2c-9.6,7.467-10.667,21.333-3.2,29.867l9.599,10.667c24.533,28.8,57.6,33.067,88.533,33.067 c5.333,0,10.667,0,16,0c6.4,0,11.733,0,18.133,0h132.267c6.4,0,12.8,0,18.133,0c36.267,1.067,76.8,2.133,105.6-33.067l9.6-10.667 C457.684,349.743,455.551,336.943,447.017,329.476z"></path>
@@ -216,7 +248,7 @@
                 </g>
               </g>
             </svg>
-            <span style="color: var(--accent-color)">libre</span><span class="sail-text">sail</span>
+            <span style="color: var(--accent-color)">libre</span><span>sail</span>
           </h2>
         </a>
         <div class="position-relative flex-grow-1">
@@ -226,7 +258,6 @@
       </form>
     </div>
   </nav>
-  
   <div class="py-4 px-4">
     <div class="py-4"></div>
     <div class="py-4"></div>
@@ -296,6 +327,49 @@
           document.querySelector('.search-input').focus();
         }
       });
+    });
+        // Add keydown event listener to focus search input when / is pressed
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+    const pressedButtonSelector = '[data-theme][aria-pressed="true"]';
+    const defaultTheme = 'green';
+
+    const applyTheme = (theme) => {
+    const target = document.querySelector(`[data-theme="${theme}"]`);
+      document.documentElement.setAttribute("data-selected-theme", theme);
+      document.querySelector(pressedButtonSelector).setAttribute('aria-pressed', 'false');
+      target.setAttribute('aria-pressed', 'true');
+    };
+
+    const handleThemeSelection = (event) => {
+    const target = event.target;
+    const isPressed = target.getAttribute('aria-pressed');
+    const theme = target.getAttribute('data-theme');
+
+    if(isPressed !== "true") {
+      applyTheme(theme);
+      localStorage.setItem('selected-theme', theme);
+      }
+    }
+
+    const setInitialTheme = () => {
+    const savedTheme = localStorage.getItem('selected-theme');
+    if(savedTheme && savedTheme !== defaultTheme) {
+      applyTheme(savedTheme);
+      }
+    };
+
+    setInitialTheme();
+
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    const buttons = themeSwitcher.querySelectorAll('button');
+
+    buttons.forEach((button) => {
+     button.addEventListener('click', handleThemeSelection);
     });
   </script>
 </body>
