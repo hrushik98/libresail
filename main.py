@@ -1,6 +1,6 @@
 from duckduckgo_search import DDGS
-import yfinance  as yf
 import podsearch
+import yfinance  as yf
 from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
@@ -10,26 +10,26 @@ def home():
     if request.method == "POST":
        search_term = request.form.get("search_term")
        if search_term[:3] == "ai|":
-           resultsCHAT = DDGS().chat(search_term, model='claude-3-haiku')
+           resultsCHAT = DDGS().chat(str(search_term), model='claude-3-haiku')
            return render_template("ai.html",resultsCHAT=resultsCHAT,search_term=search_term)
        if search_term[:5] == "news|":
-           resultsnews = DDGS().news(search_term, max_results=15)
+           resultsnews = DDGS().news(str(search_term), max_results=15)
            return render_template("news.html",resultsnews=resultsnews,search_term=search_term)
        if search_term[:6] == "image|":
-           resultsimages = DDGS().images(search_term, max_results=200)
+           resultsimages = DDGS().images(str(search_term), max_results=200)
            return render_template("images.html",resultsimages=resultsimages,search_term=search_term)
        if search_term[:6] == "video|":
-           resultsvid = DDGS().videos(search_term, max_results=10)
+           resultsvid = DDGS().videos(str(search_term), max_results=10)
            return render_template("video.html",resultsvid=resultsvid,search_term=search_term)
-       if search_term[:4] == "pod|":
-           resultspod = podsearch.search(search_term, country="IE", limit=10)
+       if search_term[:8] == "podcast|":
+           resultspod = podsearch.search(str(search_term), country="IE", limit=20)
            return render_template("podcasts.html",resultspod=resultspod,search_term=search_term)
        return redirect("/"+search_term)
     return render_template("index.html")
 
 @app.route('/<search_term>')
 def search(search_term):
-    results = DDGS().text(search_term, region='wt-wt', max_results=25)
+    results = DDGS().text(str(search_term), region='wt-wt', max_results=25)
     sr = search_term
     return render_template("results.html", results=results, sr=sr)
     
@@ -46,3 +46,4 @@ def page_not_found(e):
 @app.errorhandler(500)
 def server_error(e):
     return render_template("index.html"), 500
+
