@@ -1,5 +1,6 @@
 from duckduckgo_search import DDGS
 import yfinance  as yf
+import podsearch
 from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
@@ -20,6 +21,9 @@ def home():
        if search_term[:6] == "video|":
            resultsvid = DDGS().videos(search_term, max_results=10)
            return render_template("video.html",resultsvid=resultsvid,search_term=search_term)
+       if search_term[:4] == "pod|":
+           resultspod = podsearch.search(search_term, country="IE", limit=10)
+           return render_template("podcasts.html",resultspod=resultspod,search_term=search_term)
        return redirect("/"+search_term)
     return render_template("index.html")
 
