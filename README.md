@@ -10,7 +10,7 @@ install requirements with: `pip install -r requirements.txt`
 
 run dev server with: `flask --app main run`
 
-view app by visiting in browser: `127.0.0.1:5000`
+view app by visiting in browser: `http://127.0.0.1:5000`
 
 ![Screenshot from 2025-03-10 13-23-42](https://github.com/user-attachments/assets/a4763ef3-4e3a-484a-83a5-4cdd205dcc84)
 
