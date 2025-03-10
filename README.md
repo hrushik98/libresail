@@ -3,6 +3,9 @@ building the next gen ai powered meta search engine
 
 ## License: MIT License 
 
+## Hosted Demo
+https://eoinodowd.pythonanywhere.com/
+
 ## how to use
 clone this repo
 
