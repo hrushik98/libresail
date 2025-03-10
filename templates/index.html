@@ -281,6 +281,19 @@
     buttons.forEach((button) => {
       button.addEventListener('click', handleThemeSelection);
     });
+    const savedTheme = localStorage.getItem('selected-theme');
+    const defaultTheme = "green";
+
+    if (savedTheme && savedTheme !== defaultTheme) {
+      const prevBtn = document.querySelector('[data-theme][aria-pressed="true"]');
+      prevBtn.setAttribute('aria-pressed', false);
+  
+      document.querySelector(`[data-theme="${savedTheme}"]`)
+      .setAttribute('aria-pressed', true);
+  
+      document.documentElement
+      .setAttribute("data-selected-theme", savedTheme);
+  }
   </script>
   <style>
     @keyframes float {
