@@ -1,6 +1,8 @@
 # libresail
 building the next gen ai powered meta search engine
 
+## License: MIT License (MIT License) 
+
 ## how to use
 clone this repo
 
