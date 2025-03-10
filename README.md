@@ -13,7 +13,7 @@ run main with: `flask --app main run`
 
 
 
-![image](https://github.com/user-attachments/assets/daba048b-d7d4-4e0e-ae46-96dc11a26424)
+![Screenshot](Screenshot from 2025-03-10 13-23-42.png)
 
 
-![image](https://github.com/user-attachments/assets/81b2cada-8694-44ca-86ac-4947b21a0f56)
+![Screenshot](Screenshot from 2025-03-10 13-24-17.png)
