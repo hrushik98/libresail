@@ -1,0 +1,18 @@
+<div class="toast-container position-fixed end-0 p-3 pt-0 toast-container-extra" id="toast-stack-container">
+        {% for category, message in messages %}
+            {% if category == 'danger' %}
+            <div class="toast-container position-fixed bottom-0 end-0 p-4">
+                <div id="liveToast" class="toast text-white" role="alert" style="background-color: var(--bg-color)!important" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header text-white" style="background-color: var(--accent-color)!important">
+                        <strong class="me-auto">Error</strong>
+                        <small>Just Now!</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+</div>
