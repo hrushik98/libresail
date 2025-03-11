@@ -22,7 +22,7 @@ def home():
            resultsvid = DDGS().videos(str(search_term), max_results=10)
            return render_template("video.html",resultsvid=resultsvid,search_term=search_term)
        if search_term[:8] == "podcast|":
-           resultspod = podsearch.search(str(search_term), country="IE", limit=20)
+           resultspod = podsearch.search(str(search_term[8:]), country="IE", limit=20)
            return render_template("podcasts.html",resultspod=resultspod,search_term=search_term)
        return redirect("/"+search_term)
     return render_template("index.html")
