@@ -3,7 +3,7 @@ from duckduckgo_search import DDGS
 import podsearch
 import yfinance  as yf
 app = Flask(__name__)
-app.secret_key = "WhoOwnSearchResults"
+app.secret_key = "WhoOwnSearchResults" #change in production
 
 @app.route('/', methods =["GET", "POST"])
 def home():
