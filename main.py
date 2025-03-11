@@ -1,9 +1,9 @@
+from flask import Flask, render_template, request, redirect, flash
 from duckduckgo_search import DDGS
 import podsearch
 import yfinance  as yf
-from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
-
+app.secret_key = "WhoOwnSearchResults"
 
 @app.route('/', methods =["GET", "POST"])
 def home():
@@ -45,5 +45,6 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def server_error(e):
+    flash(e, category='danger')
     return render_template("index.html"), 500
 
