@@ -5,7 +5,7 @@ building the next gen ai powered meta search engine
 MIT License 
 
 ## Hosted Demo
-https://eoinodowd.pythonanywhere.com/
+https://libresail.com
 
 ## how to use
 ### Bare-metal
