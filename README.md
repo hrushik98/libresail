@@ -5,7 +5,7 @@ building the next gen ai powered meta search engine
 MIT License 
 
 ## Hosted Demo
-https://libresail.com
+https://www.libresail.com
 
 ## how to use
 ### Bare-metal
