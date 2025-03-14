@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash
+import requests, json
 from duckduckgo_search import DDGS
 import podsearch
 import yfinance  as yf
@@ -26,7 +27,18 @@ def home():
            return render_template("podcasts.html",resultspod=resultspod,search_term=search_term)
        return redirect("/"+search_term)
     return render_template("index.html")
-
+    
+@app.route("/search/<string:input>")
+def process(input):
+    query = request.args.get('query')
+    if input == 'term':
+    	URL="http://google.com/complete/search?client=chrome&q="+query
+    	headers = {'User-agent':'Mozilla/5.0'}
+    	response = requests.get(URL, headers=headers)
+    	if response.status_code == 200:
+        	suggestions = json.loads(response.content.decode('utf-8'))[1]
+    	return jsonify({"suggestions":suggestions})
+        
 @app.route('/<search_term>')
 def search(search_term):
     results = DDGS().text(str(search_term), region='wt-wt', max_results=25)
