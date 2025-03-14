@@ -346,6 +346,16 @@
     });
 
   </script>
+    <script>
+  $('#searchInput').autocomplete({
+      serviceUrl: '/search/term',
+      dataType: 'json',
+      onSearchComplete: function (query, suggestions) {
+        console.log(query);
+      }
+  });
+
+  </script>
   <style>
     @keyframes float {
       0% {
